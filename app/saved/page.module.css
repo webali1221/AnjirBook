@@ -62,3 +62,32 @@
     gap: 16px;
   }
 }
+
+@media (max-width: 480px) {
+  .page {
+    padding: 24px 0 40px;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .empty {
+    padding: 50px 0;
+  }
+
+  .emptyIcon {
+    font-size: 48px;
+  }
+
+  .empty p {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+}

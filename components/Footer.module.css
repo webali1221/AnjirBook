@@ -103,4 +103,58 @@
     grid-template-columns: 1fr;
     gap: 32px;
   }
+
+  .footer {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerInner {
+    padding: 32px 16px 16px;
+  }
+
+  .grid {
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .logo {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .logoImg {
+    height: 28px;
+    width: 28px;
+  }
+
+  .logoText {
+    font-size: 18px;
+  }
+
+  .aboutText {
+    font-size: 12px;
+  }
+
+  .heading {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .link {
+    font-size: 12px;
+  }
+
+  .contactItem {
+    font-size: 12px;
+  }
+
+  .bottom {
+    padding-top: 16px;
+  }
+
+  .bottom p {
+    font-size: 11px;
+  }
 }

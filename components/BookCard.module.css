@@ -165,34 +165,86 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .cover {
-    height: 160px;
+    height: 180px;
   }
   .coverEmoji {
-    font-size: 32px;
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
+  .coverTitle {
+    font-size: 14px;
+  }
+  .coverAuthor {
+    font-size: 11px;
+  }
+  .info {
+    padding: 12px;
+  }
+  .title {
+    font-size: 14px;
+  }
+  .author {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .price {
+    font-size: 14px;
+  }
+  .buyBtn {
+    font-size: 12px;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 480px) {
+  .cover {
+    height: 140px;
+  }
+  .coverEmoji {
+    font-size: 28px;
     margin-bottom: 6px;
   }
   .coverTitle {
-    font-size: 13px;
+    font-size: 12px;
   }
   .coverAuthor {
     font-size: 10px;
   }
   .info {
-    padding: 10px;
+    padding: 8px 10px;
   }
   .title {
-    font-size: 13px;
+    font-size: 12px;
+    margin-bottom: 2px;
   }
   .author {
-    font-size: 11px;
-    margin-bottom: 8px;
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
   }
   .price {
-    font-size: 13px;
+    font-size: 12px;
   }
   .buyBtn {
-    font-size: 11px;
+    font-size: 10px;
+  }
+  .saveBtn {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    top: 8px;
+    right: 8px;
+  }
+  .badge span {
+    font-size: 9px;
+    padding: 2px 8px;
   }
 }

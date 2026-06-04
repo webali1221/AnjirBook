@@ -406,4 +406,37 @@ input, textarea, select {
   .container {
     padding: 0 12px;
   }
+
+  .modal-overlay {
+    padding: 12px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    border-radius: var(--radius-lg);
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .toast {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
 }

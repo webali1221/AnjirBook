@@ -105,3 +105,35 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
+
+@media (max-width: 480px) {
+  .modalHeader {
+    padding: 24px 20px 0;
+  }
+
+  .modalIcon {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+
+  .modalTitle {
+    font-size: 18px;
+  }
+
+  .form {
+    padding: 20px;
+    gap: 14px;
+  }
+
+  .switchMode {
+    padding: 0 20px 20px;
+  }
+
+  .closeBtn {
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+}

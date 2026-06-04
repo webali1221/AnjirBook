@@ -288,10 +288,48 @@
 }
 
 @media (max-width: 480px) {
-  .title {
-    font-size: 24px;
-    margin-bottom: 20px;
+  .page {
+    padding-top: 20px;
+    padding-bottom: 40px;
   }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .userCard, .settingsCard {
+    padding: 16px;
+  }
+
+  .avatarBig {
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .userName {
+    font-size: 17px;
+  }
+
+  .userPhone {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .premiumStatusBox {
+    padding: 12px;
+  }
+
+  .premiumLabel {
+    font-size: 13px;
+  }
+
+  .settingsCard h3 {
+    font-size: 16px;
+  }
+
   .tabs {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -311,9 +349,31 @@
   }
   .grid {
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
   }
   .unauthCard {
     padding: 24px;
+    margin: 0 12px;
+  }
+
+  .lockIcon {
+    font-size: 42px;
+    margin-bottom: 12px;
+  }
+
+  .emptyList {
+    padding: 40px 16px;
+  }
+
+  .emptyList span {
+    font-size: 40px;
+  }
+
+  .emptyList p {
+    font-size: 13px;
+  }
+
+  .sidebar {
+    gap: 14px;
   }
 }

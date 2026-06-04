@@ -496,3 +496,120 @@
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
+
+@media (max-width: 480px) {
+  .modal {
+    max-width: 100%;
+    margin: 0;
+    border-radius: var(--radius-lg);
+  }
+
+  .header {
+    padding: 28px 20px 20px;
+  }
+
+  .bookIcon {
+    font-size: 42px;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  .form {
+    padding: 16px 20px 24px;
+    gap: 14px;
+  }
+
+  .pricingSummary {
+    padding: 12px;
+  }
+
+  .priceRow {
+    font-size: 12px;
+  }
+
+  .totalRow {
+    font-size: 14px;
+  }
+
+  .paddedContent {
+    padding: 16px 20px 24px;
+  }
+
+  .virtualCard {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .cardNumberDisplay {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    margin: 12px 0;
+  }
+
+  .cardHeader {
+    font-size: 10px;
+  }
+
+  .cardChip {
+    font-size: 20px;
+  }
+
+  .cardHolder label, .cardExpiryDisplay label {
+    font-size: 8px;
+  }
+
+  .cardHolder div, .cardExpiryDisplay div {
+    font-size: 11px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .methodBtn {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .processingSection {
+    padding: 40px 20px;
+  }
+
+  .successSection {
+    padding: 32px 20px;
+  }
+
+  .mapContainer {
+    height: 150px;
+  }
+
+  .distanceInfoBox {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .distanceIcon {
+    font-size: 18px;
+  }
+
+  .distanceText {
+    font-size: 12px;
+  }
+
+  .closeBtn {
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+}

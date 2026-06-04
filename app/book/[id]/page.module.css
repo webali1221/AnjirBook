@@ -283,4 +283,107 @@
   .price {
     font-size: 22px;
   }
+
+  .contentBody {
+    padding: 24px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 20px 0 40px;
+  }
+
+  .backBtn {
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+
+  .coverWrap {
+    max-width: 200px;
+  }
+
+  .coverInner {
+    padding: 16px;
+  }
+
+  .coverEmoji {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+
+  .coverTitle {
+    font-size: 16px;
+  }
+
+  .coverAuthor {
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .author {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .oldPrice {
+    font-size: 14px;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .actions .btn {
+    flex: 1;
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  .contentSection {
+    margin-top: 40px;
+    padding-top: 24px;
+  }
+
+  .contentTitle {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .contentBody {
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .notFound {
+    padding: 60px 0;
+  }
+
+  .notFound span {
+    font-size: 56px;
+  }
+
+  .notFound p {
+    font-size: 15px;
+  }
+
+  .pdfContainer {
+    padding: 6px;
+  }
 }
