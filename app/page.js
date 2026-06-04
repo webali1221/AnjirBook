@@ -1,66 +1,85 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+import { useState, useEffect } from 'react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import SearchBar from '@/components/SearchBar';
+import BookCard from '@/components/BookCard';
+import { useLanguage } from '@/contexts/LanguageContext';
+import styles from './page.module.css';
 
-export default function Home() {
+export default function HomePage() {
+  const { t } = useLanguage();
+  const [books, setBooks] = useState([]);
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState('all');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchBooks();
+  }, [search, category]);
+
+  const fetchBooks = async () => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams();
+      if (search) params.set('search', search);
+      if (category && category !== 'all') params.set('category', category);
+      
+      const res = await fetch(`/api/books?${params}`);
+      const data = await res.json();
+      setBooks(data.books || []);
+    } catch (e) {
+      console.error('Failed to fetch books:', e);
+    }
+    setLoading(false);
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Header />
+      <main>
+        {/* Hero Section */}
+        <section className={styles.hero}>
+          <div className={`container ${styles.heroInner}`}>
+            <div className={styles.heroContent}>
+              <h1 className={styles.heroTitle}>{t('heroTitle')}</h1>
+              <p className={styles.heroSubtitle}>{t('heroSubtitle')}</p>
+            </div>
+            <div className={styles.heroDecor}>
+              <span className={styles.heroEmoji}>📚</span>
+            </div>
+          </div>
+          <div className={styles.heroWave}></div>
+        </section>
+
+        {/* Search & Books */}
+        <section className={`container ${styles.booksSection}`}>
+          <SearchBar 
+            value={search} 
+            onChange={setSearch} 
+            onCategoryChange={setCategory}
+            activeCategory={category}
+          />
+
+          {loading ? (
+            <div className={styles.loading}>
+              <div className={styles.spinner}></div>
+            </div>
+          ) : books.length === 0 ? (
+            <div className={styles.empty}>
+              <span className={styles.emptyIcon}>📭</span>
+              <p>{t('noBooks')}</p>
+            </div>
+          ) : (
+            <div className={styles.grid}>
+              {books.map((book, i) => (
+                <BookCard key={book.id} book={book} index={i} />
+              ))}
+            </div>
+          )}
+        </section>
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }

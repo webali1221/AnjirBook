@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "userId": "1",
+    "bookId": "1",
+    "bookTitle": "Mehrobdan chayon",
+    "price": 45000,
+    "userName": "Test Foydalanuvchi",
+    "userPhone": "+998901234567",
+    "createdAt": "2025-06-01T14:30:00Z"
+  },
+  {
+    "id": "2",
+    "userId": "1",
+    "bookId": "4",
+    "bookTitle": "Shum bola",
+    "price": 28000,
+    "userName": "Test Foydalanuvchi",
+    "userPhone": "+998901234567",
+    "createdAt": "2025-06-10T09:15:00Z"
+  },
+  {
+    "userId": "3",
+    "bookId": "1",
+    "bookTitle": "O'tgan kunlar",
+    "price": 120000,
+    "userName": "Alibek",
+    "userPhone": "+998 93 868 44 07",
+    "id": "3",
+    "createdAt": "2026-06-04T12:33:20.232Z"
+  },
+  {
+    "userId": "4",
+    "bookId": "1",
+    "bookTitle": "O'tgan kunlar",
+    "price": 125000,
+    "userName": "Sardor",
+    "userPhone": "998901234567",
+    "id": "4",
+    "createdAt": "2026-06-04T12:46:20.549Z"
+  }
+]

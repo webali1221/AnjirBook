@@ -1,0 +1,498 @@
+.modal {
+  max-width: 440px;
+  position: relative;
+  overflow: visible;
+}
+
+.header {
+  background: var(--accent-gradient);
+  padding: 40px 32px 24px;
+  text-align: center;
+  position: relative;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.15) 0%, transparent 40%);
+}
+
+.bookIcon {
+  font-size: 56px;
+  margin-bottom: 12px;
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  position: relative;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  margin-top: 8px;
+  position: relative;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.form {
+  padding: 24px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pricingSummary {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.priceRow:last-of-type {
+  margin-bottom: 0;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 10px 0;
+}
+
+.totalRow {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.rangeInput {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+  height: 6px;
+  border-radius: var(--radius-full);
+}
+
+.rangeHint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.errorText {
+  color: var(--error);
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.closeLink {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.closeLink:hover {
+  color: var(--text-primary);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  border: none;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  z-index: 5;
+}
+
+.closeBtn:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+/* Payment Method & Card Details */
+.paddedContent {
+  padding: 24px 32px 32px;
+}
+
+.backBtnRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.backBtn:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.paymentAmount {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.paymentAmount strong {
+  color: var(--accent);
+}
+
+.methodTitle {
+  font-size: 16px;
+  font-weight: 750;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.methodList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.methodBtn {
+  width: 100%;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.clickBtn {
+  background: #0088cc;
+  color: white;
+  border: none;
+}
+
+.clickBtn:hover {
+  background: #0077b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.4);
+}
+
+.virtualCard {
+  background: linear-gradient(135deg, #1E1B4B, #312E81, #4338CA);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  aspect-ratio: 1.58/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.virtualCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.cardChip {
+  font-size: 24px;
+}
+
+.cardNumberDisplay {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-align: center;
+  margin: 16px 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.cardFooterDisplay {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cardHolder label, .cardExpiryDisplay label {
+  font-size: 9px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.cardHolder div, .cardExpiryDisplay div {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Processing & Success states */
+.processingSection {
+  padding: 60px 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.successSection {
+  padding: 40px 32px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.successIcon {
+  font-size: 56px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.successSubtext {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.distanceInfoBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+}
+
+.distanceIcon {
+  font-size: 22px;
+}
+
+.distanceText {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.distanceSub {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Map Integration Styles */
+.mapWrapper {
+  position: relative;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.mapContainer {
+  height: 180px;
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.mapPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+  background: var(--bg-secondary);
+}
+
+.mapSpinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.detectLocationBtn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 20;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.detectLocationBtn:hover:not(:disabled) {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.detectLocationBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.customMarker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.markerPin {
+  font-size: 26px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  animation: markerBounce 1s infinite alternate;
+  line-height: 1;
+}
+
+.officeMarker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.officePin {
+  font-size: 26px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  line-height: 1;
+}
+
+.loadingPulse {
+  font-size: 11px;
+  color: var(--accent);
+  animation: pulse 1.5s infinite ease-in-out;
+  margin-left: 6px;
+  font-weight: normal;
+}
+
+@keyframes markerBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}

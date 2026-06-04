@@ -1,0 +1,19 @@
+[
+  {
+    "title": "O'tgan kunlar",
+    "titleRu": "Утган кунлар",
+    "author": "Abdulla Qodiriy",
+    "authorRu": "Абдулла Кадыри",
+    "price": 120000,
+    "description": "",
+    "descriptionRu": "",
+    "category": "classic",
+    "image": "https://hilolnashr.uz/image/cache/catalog/001-Kitoblar/003_boshqalar/002_badiy/2024/ok2-500x750.jpg",
+    "pdfUrl": "",
+    "content": "Salom bu Anjirbook uchun saytning test sfatida yaratilgan kitobni onlayn oqish sahifasi ",
+    "contentRu": "Здравствуйте, это страница онлайн-трансляции книг, созданная для Anjirbook в тестовой версии сайта.",
+    "id": "1",
+    "sold": 2,
+    "createdAt": "2026-06-04T12:32:54.901Z"
+  }
+]
