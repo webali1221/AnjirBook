@@ -30,9 +30,32 @@
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
+.mobileToggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
+  .mobileToggle {
+    display: flex;
+  }
+
   .main {
     margin-left: 0;
-    padding: 20px;
+    padding: 76px 16px 24px; /* Space for top button + padding */
   }
 }

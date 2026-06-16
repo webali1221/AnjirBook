@@ -145,192 +145,37 @@ export default function PremiumModal({ onClose }) {
           <p className={styles.subtitle}>{t('premiumSubtitle')}</p>
         </div>
 
-        {step === 'select' && (
-          <>
-            <div className={styles.features}>
-              <div className={styles.feature}>
-                <span className={styles.featureIcon}>📚</span>
-                <span>{t('premiumFeature1')}</span>
-              </div>
-              <div className={styles.feature}>
-                <span className={styles.featureIcon}>🚫</span>
-                <span>{t('premiumFeature2')}</span>
-              </div>
-              <div className={styles.feature}>
-                <span className={styles.featureIcon}>⚡</span>
-                <span>{t('premiumFeature3')}</span>
-              </div>
-            </div>
-
-            <div className={styles.packagesSection}>
-              <h4 className={styles.packagesTitle}>{t('buyPremiumPackage')}</h4>
-              <div className={styles.packagesList}>
-                {packages.map(p => (
-                  <div
-                    key={p.key}
-                    className={`${styles.packageCard} ${months === p.value ? styles.packageActive : ''}`}
-                    onClick={() => setMonths(p.value)}
-                  >
-                    <div className={styles.packageRadio}>
-                      <span className={months === p.value ? styles.radioInner : ''}></span>
-                    </div>
-                    <div className={styles.packageInfo}>
-                      <span className={styles.packageName}>{p.value} oy</span>
-                      <span className={styles.packagePrice}>{p.priceStr}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.actions}>
-              <button className={`btn btn-primary ${styles.buyBtn}`} onClick={handleNextToMethod}>
-                💳 Davom etish
-              </button>
-              <button className={styles.closeLink} onClick={onClose}>
-                {t('close')}
-              </button>
-            </div>
-          </>
-        )}
-
-        {step === 'method' && (
-          <div className={styles.paymentSection}>
-            <div className={styles.backBtnRow}>
-              <button className={styles.backBtn} onClick={() => setStep('select')}>← Orqaga</button>
-              <span className={styles.paymentAmount}>To'lov: <strong>{selectedPackage?.priceStr}</strong></span>
-            </div>
-            
-            <h3 className={styles.methodTitle}>To'lov usulini tanlang</h3>
-            
-            <div className={styles.methodList}>
-              <button 
-                className={`btn btn-primary ${styles.methodBtn} ${styles.clickBtn}`} 
-                onClick={handlePayViaClick} 
-                disabled={loading}
-              >
-                🔵 {loading ? 'Yuklanmoqda...' : 'CLICK orqali to\'lash'}
-              </button>
-              
-              <button 
-                className={`btn btn-secondary ${styles.methodBtn}`} 
-                onClick={() => setStep('pay')}
-              >
-                💳 Simulyatsiya to'lovi (Test)
-              </button>
-            </div>
-          </div>
-        )}
-
-        {step === 'pay' && (
-          <div className={styles.paymentSection}>
-            <div className={styles.backBtnRow}>
-              <button className={styles.backBtn} onClick={() => setStep('method')}>← Orqaga</button>
-              <span className={styles.paymentAmount}>To'lov: <strong>{selectedPackage?.priceStr}</strong></span>
-            </div>
-
-            {/* Virtual Card View */}
-            <div className={styles.virtualCard}>
-              <div className={styles.cardHeader}>
-                <span className={styles.cardType}>UzCard / Humo / Visa</span>
-                <span className={styles.cardChip}>📟</span>
-              </div>
-              <div className={styles.cardNumberDisplay}>
-                {cardNumber || '•••• •••• •••• ••••'}
-              </div>
-              <div className={styles.cardFooterDisplay}>
-                <div className={styles.cardHolder}>
-                  <label>CARD HOLDER</label>
-                  <div>{cardName.toUpperCase() || 'NAME SURNAME'}</div>
-                </div>
-                <div className={styles.cardExpiryDisplay}>
-                  <label>EXPIRES</label>
-                  <div>{cardExpiry || 'MM/YY'}</div>
+        <div className={styles.packagesSection}>
+          <h4 className={styles.packagesTitle}>{t('buyPremiumPackage')}</h4>
+          <div className={styles.packagesList}>
+            {packages.map(p => (
+              <div key={p.key} className={styles.packageCardStatic}>
+                <div className={styles.packageInfo}>
+                  <span className={styles.packageName}>{p.value} oy</span>
+                  <span className={styles.packagePrice}>{p.priceStr}</span>
                 </div>
               </div>
-            </div>
-
-            <form className={styles.paymentForm} onSubmit={handlePaymentSubmit}>
-              <div className={styles.field}>
-                <label>Karta raqami</label>
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="8600 •••• •••• ••••"
-                  maxLength="19"
-                  value={cardNumber}
-                  onChange={e => setCardNumber(formatCardNumber(e.target.value))}
-                  required
-                />
-              </div>
-
-              <div className={styles.formRow}>
-                <div className={styles.field}>
-                  <label>Muddati</label>
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="MM/YY"
-                    maxLength="5"
-                    value={cardExpiry}
-                    onChange={e => setCardExpiry(formatExpiry(e.target.value))}
-                    required
-                  />
-                </div>
-                <div className={styles.field}>
-                  <label>CVC / CVV</label>
-                  <input
-                    className="input"
-                    type="password"
-                    placeholder="•••"
-                    maxLength="3"
-                    value={cardCvv}
-                    onChange={e => setCardCvv(e.target.value.replace(/[^0-9]/g, ''))}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className={styles.field}>
-                <label>Karta egasining ismi</label>
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="ISM FAMILIYA"
-                  value={cardName}
-                  onChange={e => setCardName(e.target.value)}
-                  required
-                />
-              </div>
-
-              {formError && <p className={styles.errorText}>{formError}</p>}
-
-              <button className="btn btn-primary" type="submit" style={{ width: '100%', marginTop: '10px' }}>
-                💸 {selectedPackage?.priceStr} to'lash
-              </button>
-            </form>
+            ))}
           </div>
-        )}
+        </div>
 
-        {step === 'processing' && (
-          <div className={styles.processingSection}>
-            <div className={styles.spinner}></div>
-            <h3>To'lov amalga oshirilmoqda...</h3>
-            <p>Iltimos, sahifani yopmang yoki yangilamang.</p>
-          </div>
-        )}
+        <div className={styles.contactSection}>
+          <p className={styles.contactText}>
+            Premium sotib olish uchun telegramdan manashu raqamga yozing:
+          </p>
+          <a href="https://t.me/+998901234567" className={styles.telegramLink} target="_blank">
+            ✈️ +998 90 123 45 67
+          </a>
+          <p className={styles.contactHint}>
+            To'lovni tasdiqlaganingizdan so'ng, premium 5-10 daqiqa ichida faollashtirib beriladi.
+          </p>
+        </div>
 
-        {step === 'success' && (
-          <div className={styles.successSection}>
-            <span className={styles.successIcon}>🎉</span>
-            <h3>To'lov muvaffaqiyatli yakunlandi!</h3>
-            <p>Kartangizdan <strong>{selectedPackage?.priceStr}</strong> yechildi.</p>
-            <p className={styles.successSubtext}>Premium obuna {months} oyga faollashtirildi.</p>
-            <button className="btn btn-primary" onClick={onClose} style={{ marginTop: '20px', width: '100%' }}>
-              Tushunarli
-            </button>
-          </div>
-        )}
+        <div className={styles.actions}>
+          <button className={`btn btn-secondary ${styles.closeBtnLink}`} onClick={onClose}>
+            {t('close')}
+          </button>
+        </div>
 
         <button className={styles.closeBtn} onClick={onClose}>✕</button>
       </div>

@@ -42,6 +42,8 @@ export default function AdminLayout({ children }) {
     });
   }, [pathname, router]);
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
     router.push('/admin/login');
@@ -63,7 +65,19 @@ export default function AdminLayout({ children }) {
 
   return (
     <div className={styles.layout}>
-      <AdminSidebar onLogout={handleLogout} />
+      <button 
+        className={styles.mobileToggle} 
+        onClick={() => setSidebarOpen(true)}
+      >
+        ☰
+      </button>
+
+      <AdminSidebar 
+        isOpen={sidebarOpen} 
+        onClose={() => setSidebarOpen(false)} 
+        onLogout={handleLogout} 
+      />
+      
       <main className={styles.main}>
         {children}
       </main>

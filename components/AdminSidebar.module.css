@@ -100,13 +100,55 @@
   background: rgba(239, 68, 68, 0.1);
 }
 
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 45;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.overlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.closeBtn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+}
+
 @media (max-width: 768px) {
   .sidebar {
-    width: 220px;
+    width: 280px;
     transform: translateX(-100%);
+    box-shadow: var(--shadow-lg);
   }
   
   .sidebar.open {
     transform: translateX(0);
+  }
+
+  .closeBtn {
+    display: block;
+  }
+
+  .logo {
+    margin-bottom: 0;
   }
 }

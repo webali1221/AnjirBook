@@ -1,47 +1,12 @@
 [
   {
-    "id": "1",
-    "phone": "+998901234567",
-    "name": "Test Foydalanuvchi",
-    "password": "$2a$10$abcdefghijklmnopqrstuuABCDEFGHIJKLMNOPQRSTUVWXYZ012",
-    "isPremium": false,
-    "savedBooks": [],
-    "createdAt": "2025-01-01T10:00:00Z"
-  },
-  {
-    "id": "2",
-    "name": "Salimjon",
-    "phone": "+998997654321",
-    "password": "$2b$10$txH/BJxYMtb3dBIFkT86ueEya7DFfOBzd/2XsRSMunGbwYklIBY6y",
+    "id": "5",
+    "name": "AlibekAzimov",
+    "phone": "+998 93 868 4407",
+    "password": "$2b$10$ii63.Bhb5MZsndX61f8eQ.t7SwSZH8ytt6fl59bU5pNrwm9qI.Ei.",
     "isPremium": true,
     "savedBooks": [],
-    "createdAt": "2026-06-04T12:04:47.645Z",
-    "premiumExpiresAt": "2027-07-04T12:05:25.493Z"
-  },
-  {
-    "id": "3",
-    "name": "Alibek",
-    "phone": "+998 93 868 44 07",
-    "password": "$2b$10$rv439tpWggWGLJmd1QuSI.9N4Szr.NqrQUlH6ujznPZ3/63X0ZGC.",
-    "isPremium": true,
-    "savedBooks": [],
-    "createdAt": "2026-06-04T12:20:40.904Z",
-    "premiumExpiresAt": "2026-07-04T12:51:57.006Z",
-    "readingBooks": [
-      "1"
-    ]
-  },
-  {
-    "id": "4",
-    "name": "Sardor",
-    "phone": "998901234567",
-    "password": "$2b$10$sS7TuJ7XP0W5t.hwppJSm.6ji.OurectkNz1cY.rt4IQDmqZtJD/i",
-    "isPremium": true,
-    "savedBooks": [],
-    "createdAt": "2026-06-04T12:42:40.082Z",
-    "premiumExpiresAt": "2026-07-04T12:47:22.067Z",
-    "readingBooks": [
-      "1"
-    ]
+    "createdAt": "2026-06-16T11:42:06.980Z",
+    "premiumExpiresAt": "2027-06-16T12:05:48.360Z"
   }
 ]

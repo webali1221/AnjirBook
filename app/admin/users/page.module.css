@@ -82,6 +82,101 @@
   flex-shrink: 0;
 }
 
+.deleteBtn {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.deleteBtn:hover {
+  background: var(--error);
+  color: white;
+  transform: scale(1.1);
+}
+
+.expiryCell {
+  white-space: nowrap;
+}
+
+.expiryDate {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.actionsCell {
+  min-width: 180px;
+}
+
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.enableGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-secondary);
+  padding: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.durationSelect {
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  background: var(--bg-card);
+  cursor: pointer;
+}
+
+.premiumOnBtn {
+  background: var(--accent-glow);
+  color: var(--accent);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  border: none;
+}
+
+.premiumOnBtn:hover {
+  background: var(--accent);
+  color: white;
+  transform: scale(1.1);
+}
+
+.premiumOffBtn {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  border: none;
+}
+
+.premiumOffBtn:hover {
+  background: var(--error);
+  color: white;
+  transform: scale(1.1);
+}
+
 /* Empty */
 .empty {
   text-align: center;
