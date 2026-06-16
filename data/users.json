@@ -8,5 +8,14 @@
     "savedBooks": [],
     "createdAt": "2026-06-16T11:42:06.980Z",
     "premiumExpiresAt": "2027-06-16T12:05:48.360Z"
+  },
+  {
+    "id": "6",
+    "name": "Alibek",
+    "phone": "+998 93 868 4400",
+    "password": "$2b$10$4U8mzYqypINRUYNkFoDQLe9AhAJDd4Hqdn7hC8xzMzYOeqOGvwhFa",
+    "isPremium": false,
+    "savedBooks": [],
+    "createdAt": "2026-06-16T12:20:18.190Z"
   }
 ]
