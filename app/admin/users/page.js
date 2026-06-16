@@ -75,6 +75,8 @@ export default function AdminUsersPage() {
     }
   };
 
+  const [selectedUser, setSelectedUser] = useState(null);
+
   if (loading) {
     return <div className={styles.loading}><div className={styles.spinner}></div></div>;
   }
@@ -99,10 +101,10 @@ export default function AdminUsersPage() {
                 <th>{t('userId')}</th>
                 <th>{t('userName')}</th>
                 <th>{t('userPhone')}</th>
+                <th>Parol</th>
                 <th>{t('userPremium')}</th>
                 <th>Muddati</th>
-                <th>{t('saved')}</th>
-                <th>{t('userDate')}</th>
+                <th>Kitoblar</th>
                 <th>Amallar</th>
               </tr>
             </thead>
@@ -110,13 +112,16 @@ export default function AdminUsersPage() {
               {users.map(user => (
                 <tr key={user.id}>
                   <td>#{user.id}</td>
-                  <td className={styles.userName}>
+                  <td className={styles.userName} onClick={() => setSelectedUser(user)} style={{ cursor: 'pointer' }}>
                     <div className={styles.avatar}>
                       {user.name?.charAt(0)?.toUpperCase() || '?'}
                     </div>
                     {user.name}
                   </td>
                   <td>{user.phone}</td>
+                  <td className={styles.passwordCell}>
+                    <code className={styles.passwordCode}>{user.password?.substring(0, 15)}...</code>
+                  </td>
                   <td>
                     <span className={`badge ${user.isPremium ? 'badge-success' : 'badge-error'}`}>
                       {user.isPremium ? `👑 ${t('yes')}` : t('no')}
@@ -129,10 +134,21 @@ export default function AdminUsersPage() {
                       </span>
                     ) : '-'}
                   </td>
-                  <td>{user.savedBooks?.length || 0}</td>
-                  <td>{new Date(user.createdAt).toLocaleDateString()}</td>
+                  <td>
+                    <span className={styles.orderCount} onClick={() => setSelectedUser(user)}>
+                      🛍️ {user.ordersCount || 0} / ❤️ {user.savedCount || 0}
+                    </span>
+                  </td>
                   <td className={styles.actionsCell}>
                     <div className={styles.actionGroup}>
+                      <button 
+                        className={styles.infoBtn}
+                        onClick={() => setSelectedUser(user)}
+                        title="Batafsil"
+                      >
+                        👁️
+                      </button>
+
                       {user.isPremium ? (
                         <button 
                           className={styles.premiumOffBtn}
@@ -179,6 +195,67 @@ export default function AdminUsersPage() {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* User Details Modal */}
+      {selectedUser && (
+        <div className="modal-overlay" onClick={() => setSelectedUser(null)}>
+          <div className={styles.modal} onClick={e => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <h2>👤 Foydalanuvchi ma'lumotlari</h2>
+              <button className={styles.closeBtn} onClick={() => setSelectedUser(null)}>✕</button>
+            </div>
+            <div className={styles.modalBody}>
+              <div className={styles.detailGrid}>
+                <div className={styles.detailItem}>
+                  <label>ID:</label>
+                  <span>#{selectedUser.id}</span>
+                </div>
+                <div className={styles.detailItem}>
+                  <label>Ism:</label>
+                  <span>{selectedUser.name}</span>
+                </div>
+                <div className={styles.detailItem}>
+                  <label>Telefon:</label>
+                  <span>{selectedUser.phone}</span>
+                </div>
+                <div className={styles.detailItem}>
+                  <label>Ro'yxatdan o'tgan:</label>
+                  <span>{new Date(selectedUser.createdAt).toLocaleString()}</span>
+                </div>
+                <div className={styles.detailItem} style={{ gridColumn: 'span 2' }}>
+                  <label>Parol xeshi:</label>
+                  <code className={styles.fullPassword}>{selectedUser.password}</code>
+                </div>
+              </div>
+
+              <div className={styles.modalSections}>
+                <div className={styles.modalSection}>
+                  <h3>🛍️ Sotib olingan kitoblar ({selectedUser.orders?.length || 0})</h3>
+                  {selectedUser.orders?.length > 0 ? (
+                    <ul className={styles.orderList}>
+                      {selectedUser.orders.map(order => (
+                        <li key={order.id}>
+                          <strong>{order.bookTitle}</strong>
+                          <span>{order.price?.toLocaleString()} so'm — {new Date(order.createdAt).toLocaleDateString()}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : <p className={styles.emptyText}>Kitoblar sotib olinmagan</p>}
+                </div>
+
+                <div className={styles.modalSection}>
+                  <h3>❤️ Saqlangan kitoblar ({selectedUser.savedBooks?.length || 0})</h3>
+                  {selectedUser.savedBooks?.length > 0 ? (
+                    <div className={styles.idList}>
+                      {selectedUser.savedBooks.map(id => <span key={id} className={styles.idTag}>#{id}</span>)}
+                    </div>
+                  ) : <p className={styles.emptyText}>Saqlangan kitoblar yo'q</p>}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -17,5 +17,14 @@
     "isPremium": false,
     "savedBooks": [],
     "createdAt": "2026-06-16T12:20:18.190Z"
+  },
+  {
+    "id": "7",
+    "name": "alibek",
+    "phone": "+998 93 4409299",
+    "password": "$2b$10$MpeaTujlHOT9QPn0DsQmXe9Hhr4rkVfKAHS3wZtmtcQq/36/1lKeO",
+    "isPremium": false,
+    "savedBooks": [],
+    "createdAt": "2026-06-16T12:40:18.723Z"
   }
 ]
