@@ -9,8 +9,8 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const users = getUsers();
-  const allOrders = getOrders();
+  const users = await getUsers();
+  const allOrders = await getOrders();
 
   const detailedUsers = users.map(user => {
     // Get orders for this user

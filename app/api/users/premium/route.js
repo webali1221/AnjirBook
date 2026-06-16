@@ -20,7 +20,7 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Invalid subscription package' }, { status: 400 });
   }
 
-  const user = getUserById(decoded.userId);
+  const user = await getUserById(decoded.userId);
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
@@ -36,7 +36,7 @@ export async function POST(request) {
     newExpiry.setMonth(newExpiry.getMonth() + Number(months));
   }
 
-  const updatedUser = updateUser(decoded.userId, {
+  const updatedUser = await updateUser(decoded.userId, {
     isPremium: true,
     premiumExpiresAt: newExpiry.toISOString()
   });

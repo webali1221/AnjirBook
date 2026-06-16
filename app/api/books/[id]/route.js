@@ -4,7 +4,7 @@ import { verifyAdminToken, getTokenFromRequest } from '@/lib/auth';
 
 export async function GET(request, { params }) {
   const { id } = await params;
-  const book = getBookById(id);
+  const book = await getBookById(id);
   if (!book) {
     return NextResponse.json({ error: 'Book not found' }, { status: 404 });
   }
@@ -20,7 +20,7 @@ export async function PUT(request, { params }) {
 
   const { id } = await params;
   const body = await request.json();
-  const updated = updateBook(id, body);
+  const updated = await updateBook(id, body);
   if (!updated) {
     return NextResponse.json({ error: 'Book not found' }, { status: 404 });
   }
@@ -35,7 +35,7 @@ export async function DELETE(request, { params }) {
   }
 
   const { id } = await params;
-  const deleted = deleteBook(id);
+  const deleted = await deleteBook(id);
   if (!deleted) {
     return NextResponse.json({ error: 'Book not found' }, { status: 404 });
   }

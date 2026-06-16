@@ -9,7 +9,7 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const orders = getOrders();
+  const orders = await getOrders();
   return NextResponse.json({ orders });
 }
 
@@ -17,6 +17,6 @@ export async function POST(request) {
   const body = await request.json();
   const { userId, bookId, bookTitle, price, userName, userPhone } = body;
 
-  const order = addOrder({ userId, bookId, bookTitle, price, userName, userPhone });
+  const order = await addOrder({ userId, bookId, bookTitle, price, userName, userPhone });
   return NextResponse.json({ order }, { status: 201 });
 }

@@ -13,13 +13,13 @@ export async function POST(request, { params }) {
   const body = await request.json();
   const { action, duration } = body; // action: 'enable' or 'disable', duration in months
 
-  const user = getUserById(id);
+  const user = await getUserById(id);
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
 
   if (action === 'disable') {
-    const updated = updateUser(id, {
+    const updated = await updateUser(id, {
       isPremium: false,
       premiumExpiresAt: null
     });
@@ -39,7 +39,7 @@ export async function POST(request, { params }) {
     
     newExpiry.setMonth(newExpiry.getMonth() + months);
 
-    const updated = updateUser(id, {
+    const updated = await updateUser(id, {
       isPremium: true,
       premiumExpiresAt: newExpiry.toISOString()
     });

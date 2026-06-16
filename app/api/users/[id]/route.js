@@ -10,7 +10,7 @@ export async function GET(request, { params }) {
   }
 
   const { id } = await params;
-  const user = getUserById(id);
+  const user = await getUserById(id);
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
@@ -26,7 +26,7 @@ export async function DELETE(request, { params }) {
   }
 
   const { id } = await params;
-  const deleted = deleteUser(id);
+  const deleted = await deleteUser(id);
   if (!deleted) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }

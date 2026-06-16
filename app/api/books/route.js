@@ -7,7 +7,7 @@ export async function GET(request) {
   const search = searchParams.get('search') || '';
   const category = searchParams.get('category') || '';
 
-  const books = getBooks(search, category);
+  const books = await getBooks(search, category);
   
   // Don't send content field to list (it's large)
   const booksWithoutContent = books.map(({ content, contentRu, ...rest }) => rest);
@@ -29,7 +29,7 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Title, author, and price are required' }, { status: 400 });
   }
 
-  const book = addBook({
+  const book = await addBook({
     title,
     titleRu: titleRu || '',
     author,

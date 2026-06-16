@@ -9,7 +9,7 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Phone and password are required' }, { status: 400 });
   }
 
-  const user = getUserByPhone(phone);
+  const user = await getUserByPhone(phone);
   if (!user) {
     return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
   }
