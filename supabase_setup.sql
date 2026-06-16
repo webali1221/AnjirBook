@@ -9,6 +9,7 @@ CREATE TABLE users (
   premium_expires_at TIMESTAMPTZ,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE users DISABLE ROW LEVEL SECURITY;
 
 -- 2. Books table
 CREATE TABLE books (
@@ -29,6 +30,7 @@ CREATE TABLE books (
   sold INTEGER DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE books DISABLE ROW LEVEL SECURITY;
 
 -- 3. Orders table
 CREATE TABLE orders (
@@ -41,6 +43,7 @@ CREATE TABLE orders (
   user_phone TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE orders DISABLE ROW LEVEL SECURITY;
 
 -- 4. Function to increment sold count
 CREATE OR REPLACE FUNCTION increment_sold(book_id TEXT)
