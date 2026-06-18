@@ -7,6 +7,8 @@ export default function AdminUsersPage() {
   const { t } = useLanguage();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [premiumFilter, setPremiumFilter] = useState('all'); // 'all', 'premium', 'regular'
 
   useEffect(() => {
     fetchUsers();
@@ -77,6 +79,18 @@ export default function AdminUsersPage() {
 
   const [selectedUser, setSelectedUser] = useState(null);
 
+  const filteredUsers = users.filter(user => {
+    const matchesSearch = 
+      (user.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (user.phone || '').includes(searchQuery);
+      
+    const matchesPremium = 
+      premiumFilter === 'all' ? true :
+      premiumFilter === 'premium' ? user.isPremium : !user.isPremium;
+      
+    return matchesSearch && matchesPremium;
+  });
+
   if (loading) {
     return <div className={styles.loading}><div className={styles.spinner}></div></div>;
   }
@@ -85,13 +99,38 @@ export default function AdminUsersPage() {
     <div className={styles.page}>
       <div className={styles.pageHeader}>
         <h1 className={styles.pageTitle}>👥 {t('adminUsers')}</h1>
-        <span className={styles.count}>{users.length} {t('totalUsers').toLowerCase()}</span>
+        <span className={styles.count}>
+          {searchQuery || premiumFilter !== 'all' 
+            ? `${filteredUsers.length} / ${users.length}` 
+            : users.length} {t('totalUsers').toLowerCase()}
+        </span>
       </div>
 
-      {users.length === 0 ? (
+      <div style={{ display: 'flex', gap: '12px', marginBottom: '20px', flexWrap: 'wrap' }}>
+        <input
+          type="text"
+          className="input"
+          placeholder="Ism yoki telefon orqali izlash..."
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          style={{ maxWidth: '300px', flex: '1 1 200px' }}
+        />
+        <select
+          className="select"
+          value={premiumFilter}
+          onChange={e => setPremiumFilter(e.target.value)}
+          style={{ maxWidth: '200px', flex: '1 1 150px', height: '42px' }}
+        >
+          <option value="all">Barcha foydalanuvchilar</option>
+          <option value="premium">Premium faol</option>
+          <option value="regular">Premium faol emas</option>
+        </select>
+      </div>
+
+      {filteredUsers.length === 0 ? (
         <div className={styles.empty}>
           <span>👤</span>
-          <p>Foydalanuvchilar yo'q</p>
+          <p>Foydalanuvchilar topilmadi</p>
         </div>
       ) : (
         <div className={styles.tableWrap}>
@@ -109,7 +148,7 @@ export default function AdminUsersPage() {
               </tr>
             </thead>
             <tbody>
-              {users.map(user => (
+              {filteredUsers.map(user => (
                 <tr key={user.id}>
                   <td>#{user.id}</td>
                   <td className={styles.userName} onClick={() => setSelectedUser(user)} style={{ cursor: 'pointer' }}>

@@ -12,7 +12,7 @@ export async function POST(request) {
 
     const user = await getUserByPhone(phone);
     if (!user) {
-      return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+      return NextResponse.json({ error: 'Bunday telefon raqam ro\'yxatdan o\'tmagan' }, { status: 401 });
     }
 
     const valid = comparePassword(password, user.password);

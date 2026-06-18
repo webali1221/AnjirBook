@@ -7,6 +7,8 @@ export default function AdminBooksPage() {
   const { t, lang } = useLanguage();
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('all'); // 'all', categories
   const [showForm, setShowForm] = useState(false);
   const [editingBook, setEditingBook] = useState(null);
   const [form, setForm] = useState({
@@ -94,6 +96,19 @@ export default function AdminBooksPage() {
 
   const categories = ['classic', 'adventure', 'autobiography', 'folklore', 'poetry', 'modern'];
 
+  const filteredBooks = books.filter(book => {
+    const matchesSearch = 
+      (book.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (book.titleRu || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (book.author || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (book.authorRu || '').toLowerCase().includes(searchQuery.toLowerCase());
+      
+    const matchesCategory = 
+      categoryFilter === 'all' ? true : book.category === categoryFilter;
+      
+    return matchesSearch && matchesCategory;
+  });
+
   if (loading) {
     return <div className={styles.loading}><div className={styles.spinner}></div></div>;
   }
@@ -105,6 +120,28 @@ export default function AdminBooksPage() {
         <button className="btn btn-primary" onClick={() => { resetForm(); setShowForm(true); }}>
           ➕ {t('addBook')}
         </button>
+      </div>
+
+      <div style={{ display: 'flex', gap: '12px', marginBottom: '20px', flexWrap: 'wrap' }}>
+        <input
+          type="text"
+          className="input"
+          placeholder="Kitob nomi yoki muallif..."
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          style={{ maxWidth: '300px', flex: '1 1 200px' }}
+        />
+        <select
+          className="select"
+          value={categoryFilter}
+          onChange={e => setCategoryFilter(e.target.value)}
+          style={{ maxWidth: '200px', flex: '1 1 150px', height: '42px' }}
+        >
+          <option value="all">Barcha kategoriyalar</option>
+          {categories.map(c => (
+            <option key={c} value={c}>{t(c)}</option>
+          ))}
+        </select>
       </div>
 
       {/* Book Form Modal */}
@@ -260,7 +297,7 @@ export default function AdminBooksPage() {
             </tr>
           </thead>
           <tbody>
-            {books.map(book => (
+            {filteredBooks.map(book => (
               <tr key={book.id}>
                 <td>#{book.id}</td>
                 <td className={styles.bookName}>

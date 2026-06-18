@@ -13,6 +13,36 @@ export default function AuthModal({ mode, onClose, onSwitch }) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const handlePhoneChange = (val) => {
+    let numbers = val.replace(/\D/g, '');
+    if (numbers.length > 0 && !numbers.startsWith('998')) {
+      if (numbers.length <= 3 && '998'.startsWith(numbers)) {
+        // Let them type starting 9, 99, 998
+      } else {
+        numbers = '998' + numbers;
+      }
+    }
+    
+    if (numbers.length === 0) {
+      setPhone('');
+      return;
+    }
+
+    let formatted = '+';
+    if (numbers.length <= 3) {
+      formatted += numbers;
+    } else if (numbers.length <= 5) {
+      formatted += `${numbers.slice(0, 3)} ${numbers.slice(3)}`;
+    } else if (numbers.length <= 8) {
+      formatted += `${numbers.slice(0, 3)} ${numbers.slice(3, 5)} ${numbers.slice(5)}`;
+    } else if (numbers.length <= 10) {
+      formatted += `${numbers.slice(0, 3)} ${numbers.slice(3, 5)} ${numbers.slice(5, 8)} ${numbers.slice(8)}`;
+    } else {
+      formatted += `${numbers.slice(0, 3)} ${numbers.slice(3, 5)} ${numbers.slice(5, 8)} ${numbers.slice(8, 10)} ${numbers.slice(10, 12)}`;
+    }
+    setPhone(formatted);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -69,7 +99,7 @@ export default function AuthModal({ mode, onClose, onSwitch }) {
               type="tel"
               placeholder={t('phonePlaceholder')}
               value={phone}
-              onChange={e => setPhone(e.target.value)}
+              onChange={e => handlePhoneChange(e.target.value)}
             />
           </div>
 
