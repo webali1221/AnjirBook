@@ -6,8 +6,13 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const search = searchParams.get('search') || '';
   const category = searchParams.get('category') || '';
+  const admin = searchParams.get('admin') === 'true';
 
-  const books = await getBooks(search, category);
+  let books = await getBooks(search, category);
+  
+  if (!admin) {
+    books = books.filter(b => b.isActive !== false);
+  }
   
   // Don't send content field to list (it's large)
   const booksWithoutContent = books.map(({ content, contentRu, ...rest }) => rest);
@@ -23,7 +28,7 @@ export async function POST(request) {
   }
 
   const body = await request.json();
-  const { title, titleRu, author, authorRu, price, description, descriptionRu, category, image, pdfUrl, content, contentRu } = body;
+  const { title, titleRu, author, authorRu, price, description, descriptionRu, category, image, pdfUrl, content, contentRu, stock, isActive } = body;
 
   if (!title || !author || !price) {
     return NextResponse.json({ error: 'Title, author, and price are required' }, { status: 400 });
@@ -41,7 +46,9 @@ export async function POST(request) {
     image: image || '',
     pdfUrl: pdfUrl || '',
     content: content || '',
-    contentRu: contentRu || ''
+    contentRu: contentRu || '',
+    stock: stock !== undefined ? Number(stock) : 10,
+    isActive: isActive !== undefined ? Boolean(isActive) : true
   });
 
   return NextResponse.json({ book }, { status: 201 });

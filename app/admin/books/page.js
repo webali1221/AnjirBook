@@ -14,14 +14,15 @@ export default function AdminBooksPage() {
   const [form, setForm] = useState({
     title: '', titleRu: '', author: '', authorRu: '',
     price: '', description: '', descriptionRu: '',
-    category: 'modern', image: '', pdfUrl: '', content: '', contentRu: ''
+    category: 'modern', image: '', pdfUrl: '', content: '', contentRu: '',
+    stock: '10', isActive: true
   });
 
   useEffect(() => { fetchBooks(); }, []);
 
   const fetchBooks = async () => {
     try {
-      const res = await fetch('/api/books');
+      const res = await fetch('/api/books?admin=true');
       const data = await res.json();
       setBooks(data.books || []);
     } catch (e) { console.error(e); }
@@ -34,7 +35,8 @@ export default function AdminBooksPage() {
     setForm({
       title: '', titleRu: '', author: '', authorRu: '',
       price: '', description: '', descriptionRu: '',
-      category: 'modern', image: '', pdfUrl: '', content: '', contentRu: ''
+      category: 'modern', image: '', pdfUrl: '', content: '', contentRu: '',
+      stock: '10', isActive: true
     });
     setEditingBook(null);
     setShowForm(false);
@@ -53,7 +55,9 @@ export default function AdminBooksPage() {
       image: book.image || '',
       pdfUrl: book.pdfUrl || '',
       content: book.content || '',
-      contentRu: book.contentRu || ''
+      contentRu: book.contentRu || '',
+      stock: book.stock !== undefined ? String(book.stock) : '10',
+      isActive: book.isActive !== undefined ? book.isActive : true
     });
     setEditingBook(book);
     setShowForm(true);
@@ -72,7 +76,12 @@ export default function AdminBooksPage() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ ...form, price: Number(form.price) })
+        body: JSON.stringify({ 
+          ...form, 
+          price: Number(form.price), 
+          stock: Number(form.stock || 0), 
+          isActive: form.isActive 
+        })
       });
 
       if (res.ok) {
@@ -189,6 +198,16 @@ export default function AdminBooksPage() {
                     ))}
                   </select>
                 </div>
+                <div className={styles.field}>
+                  <label>Omborda (soni) *</label>
+                  <input className="input" type="number" value={form.stock}
+                    onChange={e => setForm({ ...form, stock: e.target.value })} required />
+                </div>
+                <div className={styles.field} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px', marginTop: '16px' }}>
+                  <input type="checkbox" checked={form.isActive} id="isActiveCheckbox"
+                    onChange={e => setForm({ ...form, isActive: e.target.checked })} />
+                  <label htmlFor="isActiveCheckbox" style={{ margin: 0, cursor: 'pointer', fontSize: '13px' }}>Sotuvda ko'rinsin (Faol)</label>
+                </div>
                 
                 <div className={styles.field} style={{ gridColumn: 'span 2' }}>
                   <label>{t('bookImage')} (URL)</label>
@@ -292,7 +311,9 @@ export default function AdminBooksPage() {
               <th>{t('bookAuthor')}</th>
               <th>{t('bookCategory')}</th>
               <th>{t('bookPrice')}</th>
+              <th>Omborda</th>
               <th>{t('totalSold')}</th>
+              <th>Holati</th>
               <th></th>
             </tr>
           </thead>
@@ -306,7 +327,13 @@ export default function AdminBooksPage() {
                 <td>{lang === 'ru' && book.authorRu ? book.authorRu : book.author}</td>
                 <td><span className="badge badge-accent">{t(book.category)}</span></td>
                 <td>{book.price?.toLocaleString()} so'm</td>
+                <td><span className="badge">{book.stock || 0} ta</span></td>
                 <td><span className="badge badge-success">{book.sold || 0}</span></td>
+                <td>
+                  <span className={`badge ${book.isActive ? 'badge-success' : 'badge-error'}`}>
+                    {book.isActive ? 'Faol' : 'Nofaol'}
+                  </span>
+                </td>
                 <td>
                   <div className={styles.actionBtns}>
                     <button className="btn btn-secondary btn-sm" onClick={() => handleEdit(book)}>

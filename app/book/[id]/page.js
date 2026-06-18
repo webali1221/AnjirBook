@@ -170,6 +170,14 @@ export default function BookPage({ params }) {
 
             <p className={styles.description}>{description}</p>
 
+            <div style={{ margin: '12px 0 16px', fontSize: '14px', fontWeight: '600' }}>
+              {book.stock > 0 ? (
+                <span style={{ color: 'var(--success)' }}>🟢 Omborda: {book.stock} ta bor</span>
+              ) : (
+                <span style={{ color: 'var(--error)' }}>🔴 Sotuvda tugagan (vaqtinchalik mavjud emas)</span>
+              )}
+            </div>
+
             {/* Price display with discount details */}
             <div className={styles.priceBox}>
               {hasPremium ? (
@@ -198,8 +206,12 @@ export default function BookPage({ params }) {
               <button className="btn btn-primary" onClick={handleReadOnline}>
                 📖 {t('readOnline')}
               </button>
-              <button className="btn btn-secondary" onClick={handleBuyBook} disabled={buying}>
-                🛍️ {buying ? '...' : t('buyNow')}
+              <button 
+                className="btn btn-secondary" 
+                onClick={handleBuyBook} 
+                disabled={buying || book.stock <= 0}
+              >
+                🛍️ {buying ? '...' : (book.stock <= 0 ? "Sotuvda yo'q" : t('buyNow'))}
               </button>
               <button 
                 className={`btn btn-secondary ${saved ? styles.savedBtn : ''}`}

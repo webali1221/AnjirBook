@@ -51,7 +51,6 @@ export default function AdminLoginPage() {
         <div className={styles.cardHeader}>
           <div className={styles.icon}>⚙️</div>
           <h1 className={styles.title}>{t('adminLogin')}</h1>
-          <p className={styles.hint}>💡 {t('adminLoginHint')}</p>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
