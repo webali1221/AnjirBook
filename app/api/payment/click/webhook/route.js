@@ -76,7 +76,7 @@ export async function POST(request) {
     }
 
     // 3. Verify user exists
-    const user = getUserById(userId);
+    const user = await getUserById(userId);
     if (!user) {
       return NextResponse.json({
         error: -5,
@@ -89,7 +89,7 @@ export async function POST(request) {
     let book = null;
 
     if (isBook) {
-      book = getBookById(bookId);
+      book = await getBookById(bookId);
       if (!book) {
         return NextResponse.json({
           error: -5,
@@ -140,7 +140,7 @@ export async function POST(request) {
         const basePrice = user.isPremium ? Math.round(book.price * 0.8) : book.price;
         const deliveryFee = distance * 5000;
         
-        addOrder({
+        await addOrder({
           userId,
           bookId,
           bookTitle: book.title,
@@ -164,7 +164,7 @@ export async function POST(request) {
           newExpiry.setMonth(newExpiry.getMonth() + months);
         }
 
-        updateUser(userId, {
+        await updateUser(userId, {
           isPremium: true,
           premiumExpiresAt: newExpiry.toISOString()
         });

@@ -20,7 +20,7 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Book ID is required' }, { status: 400 });
   }
 
-  const user = getUserById(decoded.userId);
+  const user = await getUserById(decoded.userId);
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
@@ -28,7 +28,7 @@ export async function POST(request) {
   let readingBooks = user.readingBooks || [];
   if (!readingBooks.includes(bookId)) {
     readingBooks = [...readingBooks, bookId];
-    updateUser(decoded.userId, { readingBooks });
+    await updateUser(decoded.userId, { readingBooks });
   }
 
   return NextResponse.json({ readingBooks, message: 'Added to reading list' });

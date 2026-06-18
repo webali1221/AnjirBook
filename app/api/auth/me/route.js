@@ -13,7 +13,7 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
   }
 
-  const user = getUserById(decoded.userId);
+  const user = await getUserById(decoded.userId);
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }

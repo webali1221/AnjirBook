@@ -9,7 +9,7 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const user = getUserById(decoded.userId);
+  const user = await getUserById(decoded.userId);
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
@@ -25,7 +25,7 @@ export async function POST(request) {
   }
 
   const { bookId } = await request.json();
-  const user = getUserById(decoded.userId);
+  const user = await getUserById(decoded.userId);
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
@@ -33,7 +33,7 @@ export async function POST(request) {
   const savedBooks = user.savedBooks || [];
   if (!savedBooks.includes(bookId)) {
     savedBooks.push(bookId);
-    updateUser(decoded.userId, { savedBooks });
+    await updateUser(decoded.userId, { savedBooks });
   }
 
   return NextResponse.json({ savedBooks });
@@ -47,13 +47,13 @@ export async function DELETE(request) {
   }
 
   const { bookId } = await request.json();
-  const user = getUserById(decoded.userId);
+  const user = await getUserById(decoded.userId);
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
 
   const savedBooks = (user.savedBooks || []).filter(id => id !== bookId);
-  updateUser(decoded.userId, { savedBooks });
+  await updateUser(decoded.userId, { savedBooks });
 
   return NextResponse.json({ savedBooks });
 }
