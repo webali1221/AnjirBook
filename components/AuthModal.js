@@ -26,10 +26,10 @@ export default function AuthModal({ mode, onClose, onSwitch }) {
 
     if (mode === 'login') {
       result = await login(phone, password);
-      if (!result.success) setError(t('loginError'));
+      if (!result.success) setError(result.error || t('loginError'));
     } else {
       result = await register(name, phone, password);
-      if (!result.success) setError(t('registerError'));
+      if (!result.success) setError(result.error || t('registerError'));
     }
 
     setLoading(false);
