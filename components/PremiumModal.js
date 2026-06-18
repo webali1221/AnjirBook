@@ -5,7 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import styles from './PremiumModal.module.css';
 
 export default function PremiumModal({ onClose }) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { user, checkAuth } = useAuth();
   
   const [step, setStep] = useState('select'); // 'select', 'method', 'pay', 'processing', 'success'
@@ -161,13 +161,17 @@ export default function PremiumModal({ onClose }) {
 
         <div className={styles.contactSection}>
           <p className={styles.contactText}>
-            Premium sotib olish uchun telegramdan manashu raqamga yozing:
+            {lang === 'ru' 
+              ? 'Для покупки Премиум напишите нам в Telegram:' 
+              : 'Premium sotib olish uchun telegram orqali bizga yozing:'}
           </p>
-          <a href="https://t.me/+998901234567" className={styles.telegramLink} target="_blank">
-            ✈️ +998 90 123 45 67
+          <a href="https://t.me/AL_JALOLIDDIN" className={styles.telegramLink} target="_blank">
+            ✈️ @AL_JALOLIDDIN
           </a>
           <p className={styles.contactHint}>
-            To'lovni tasdiqlaganingizdan so'ng, premium 5-10 daqiqa ichida faollashtirib beriladi.
+            {lang === 'ru'
+              ? 'После подтверждения оплаты Премиум будет активирован в течение 5-10 минут.'
+              : "To'lovni tasdiqlaganingizdan so'ng, premium 5-10 daqiqa ichida faollashtirib beriladi."}
           </p>
         </div>
 

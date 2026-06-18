@@ -369,35 +369,7 @@ export default function BookPurchaseModal({ book, onClose, onSuccess }) {
     setStep('method');
   };
 
-  const handlePayViaClick = async () => {
-    setLoading(true);
-    try {
-      const token = localStorage.getItem('anjir-token');
-      const res = await fetch('/api/payment/click/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          bookId: book.id,
-          amount: totalAmount,
-          distance: distance
-        })
-      });
-      const data = await res.json();
-      if (res.ok && data.url) {
-        // Redirect to Click checkout portal
-        window.location.href = data.url;
-      } else {
-        alert(data.error || "Click to'lov havolasini olishda xatolik yuz berdi.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Server bilan aloqa uzildi.");
-    }
-    setLoading(false);
-  };
+
 
   const handleSimulatedCardSubmit = async (e) => {
     e.preventDefault();
@@ -556,13 +528,14 @@ export default function BookPurchaseModal({ book, onClose, onSuccess }) {
             <h3 className={styles.methodTitle}>To'lov usulini tanlang</h3>
             
             <div className={styles.methodList}>
-              <button 
+              <a 
+                href="https://t.me/AL_JALOLIDDIN" 
+                target="_blank" 
+                rel="noopener noreferrer"
                 className={`btn btn-primary ${styles.methodBtn} ${styles.clickBtn}`} 
-                onClick={handlePayViaClick} 
-                disabled={loading}
               >
-                🔵 {loading ? 'Yuklanmoqda...' : 'CLICK orqali sotib olish'}
-              </button>
+                ✈️ {lang === 'ru' ? 'Купить через Telegram (@AL_JALOLIDDIN)' : 'Telegram orqali sotib olish (@AL_JALOLIDDIN)'}
+              </a>
               
               <button 
                 className={`btn btn-secondary ${styles.methodBtn}`} 
