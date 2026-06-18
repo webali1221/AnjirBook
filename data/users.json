@@ -1,30 +1,11 @@
 [
   {
-    "id": "5",
-    "name": "AlibekAzimov",
-    "phone": "+998 93 868 4407",
-    "password": "$2b$10$ii63.Bhb5MZsndX61f8eQ.t7SwSZH8ytt6fl59bU5pNrwm9qI.Ei.",
-    "isPremium": true,
-    "savedBooks": [],
-    "createdAt": "2026-06-16T11:42:06.980Z",
-    "premiumExpiresAt": "2027-06-16T12:05:48.360Z"
-  },
-  {
-    "id": "6",
+    "id": "8",
     "name": "Alibek",
-    "phone": "+998 93 868 4400",
-    "password": "$2b$10$4U8mzYqypINRUYNkFoDQLe9AhAJDd4Hqdn7hC8xzMzYOeqOGvwhFa",
+    "phone": "+998 93 737 8288",
+    "password": "$2b$10$woYK9e4RFxsfBQygvMH6zOYVYTL0gjJNEpNVodtEsHdy54kai5wA2",
     "isPremium": false,
     "savedBooks": [],
-    "createdAt": "2026-06-16T12:20:18.190Z"
-  },
-  {
-    "id": "7",
-    "name": "alibek",
-    "phone": "+998 93 4409299",
-    "password": "$2b$10$MpeaTujlHOT9QPn0DsQmXe9Hhr4rkVfKAHS3wZtmtcQq/36/1lKeO",
-    "isPremium": false,
-    "savedBooks": [],
-    "createdAt": "2026-06-16T12:40:18.723Z"
+    "createdAt": "2026-06-18T09:55:11.513Z"
   }
 ]
